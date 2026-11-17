@@ -22,6 +22,12 @@
               {
                 "glob": "**/*",
                 "input": "public"
+
+              },
+              {
+                "glob": "**/*",
+                "input": "node_modules/@ffmpeg/ffmpeg/dist/esm",
+                "output": "/ffmpeg-worker/"
               }
             ],
             "styles": ["src/styles.css"]
@@ -52,6 +58,11 @@
         },
         "serve": {
           "builder": "@angular/build:dev-server",
+          "options": {
+            "prebundle":{
+              "exclude": ["@ffmpeg/ffmpeg"] 
+            }
+          },
           "configurations": {
             "production": {
               "buildTarget": "ffmpeg-helper:build:production"
